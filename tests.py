@@ -10,5 +10,5 @@ def test_model_score():
     assert isinstance(score, float)
     assert 0.0 <= score <= 1.0
 
-def test_false();
+def test_false():
    assert False
