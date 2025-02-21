@@ -9,3 +9,6 @@ def test_model_score():
     score = app.main()  # Assuming the main function returns the score
     assert isinstance(score, float)
     assert 0.0 <= score <= 1.0
+
+def test_false();
+   assert False
