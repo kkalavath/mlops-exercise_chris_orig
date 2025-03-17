@@ -20,11 +20,14 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Create data directory  # ✅ NEW STEP: Ensure 'data/' exists
-        run: mkdir -p data
+      - name: Create required directories  # ✅ Ensures 'data/' and 'models/' exist
+        run: mkdir -p data models
 
       - name: Generate dataset
         run: python util/generate.py  # Generates credit_card_records.csv
+
+      - name: Train model  # ✅ NEW STEP: Runs app.py to generate model.pkl
+        run: python app.py
 
       - name: Run tests with pytest
         run: pytest
