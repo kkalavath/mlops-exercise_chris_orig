@@ -20,6 +20,9 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
+      - name: Create data directory  # ✅ NEW STEP: Ensure 'data/' exists
+        run: mkdir -p data
+
       - name: Generate dataset
         run: python util/generate.py  # Generates credit_card_records.csv
 
