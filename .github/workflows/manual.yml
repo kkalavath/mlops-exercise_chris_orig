@@ -1,0 +1,33 @@
+name: Manually triggered workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  run-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Create required directories  # ✅ Ensures 'data/' and 'models/' exist
+        run: mkdir -p data models
+
+      - name: Generate dataset
+        run: python util/generate.py  # Generates credit_card_records.csv
+
+      - name: Train model  # ✅ NEW STEP: Runs app.py to generate model.pkl
+        run: python app.py
+
+      - name: Run tests with pytest
+        run: pytest
