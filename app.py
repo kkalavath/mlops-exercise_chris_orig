@@ -60,7 +60,7 @@ def main():
     score = test_model(model, X_test, y_test)
     # print score is:
     print("Model accuracy is: ", score)
-    return score
+    return str(score)
 
 if __name__ == "__main__":
     main()
