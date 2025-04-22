@@ -1,4 +1,5 @@
 import pandas as pd
+import os
 import random
 from faker import Faker
 
@@ -6,7 +7,7 @@ from faker import Faker
 fake = Faker()
 
 # Define the number of rows
-num_rows = 50
+num_rows = 10000
 
 # Generate data
 data = {
@@ -19,6 +20,9 @@ data = {
 
 # Create DataFrame
 df = pd.DataFrame(data)
+
+# Ensure the 'data' directory exists
+os.makedirs('data', exist_ok=True)
 
 # Save to CSV
 df.to_csv('data/credit_card_records.csv', index=False)
